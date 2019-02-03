@@ -19,15 +19,13 @@ class CreateArtesTable extends Migration
           $table->string('tipo');
           $table->string('tamanho')->nullable();
           $table->string('data');
-          $table->string('original');
+          $table->string('titulo');
           $table->string('doador')->nullable();
-          // $table->integer('fk_id_exposicao')->unsigned()->nullable();
-          // $table->string('fk_responsavel_exposicao')->nullable();
+          $table->integer('fk_id_exposicao')->unsigned()->nullable();
           $table->timestamps();
       });
-      Schema::create('artes', function (Blueprint $table) {
-        // $table->foreign('fk_id_exposicao')->references('id')->on('exposicaos')->onDelete('set null');
-        // $table->foreign('fk_responsavel_exposicao')->references('responsavel')->on('exposicaos')->onDelete('set null');
+      Schema::table('artes', function (Blueprint $table) {
+        $table->foreign('fk_id_exposicao')->references('id')->on('exposicaos')->onDelete('set null');
       });
     }
 
