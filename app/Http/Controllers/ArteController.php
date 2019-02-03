@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Arte;
+use App\Http\Resources\ArteResource;
 
 class ArteController extends Controller
 {
@@ -19,12 +20,12 @@ class ArteController extends Controller
       $arte->doador = $request->doador;
       $arte->fk_id_exposicao = $request->fk_id_exposicao;
       $arte->save();
-      return response()->json([$arte]);
+      return new ArteResource($arte);
     }
 
 
     public function index(){
-      return Arte::all();
+      return ArteResource::collection(Arte::all());
     }
 
 

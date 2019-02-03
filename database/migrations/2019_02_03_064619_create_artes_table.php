@@ -13,6 +13,8 @@ class CreateArtesTable extends Migration
      */
     public function up()
     {
+
+      
       Schema::create('artes', function (Blueprint $table) {
           $table->increments('id');
           $table->string('autor');
@@ -24,9 +26,14 @@ class CreateArtesTable extends Migration
           $table->integer('fk_id_exposicao')->unsigned()->nullable();
           $table->timestamps();
       });
+
+
       Schema::table('artes', function (Blueprint $table) {
         $table->foreign('fk_id_exposicao')->references('id')->on('exposicaos')->onDelete('set null');
+        //pus set null e não cascade pq se uma exibicao acaba o quadro continua existindo.
       });
+
+
     }
 
     /**

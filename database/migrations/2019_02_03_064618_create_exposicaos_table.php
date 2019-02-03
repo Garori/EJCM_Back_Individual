@@ -13,6 +13,8 @@ class CreateExposicaosTable extends Migration
      */
     public function up()
     {
+
+
       Schema::create('exposicaos', function (Blueprint $table) {
           $table->increments('id');
           $table->string('tipo');
@@ -24,6 +26,8 @@ class CreateExposicaosTable extends Migration
           $table->string('responsavel');
           $table->timestamps();
       });
+
+
     }
 
     /**

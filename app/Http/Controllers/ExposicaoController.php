@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Exposicao;
+use App\Http\Resources\ExposicaoResource;
 
 class ExposicaoController extends Controller
 {
@@ -19,12 +20,12 @@ class ExposicaoController extends Controller
       $exposicao->data_de_termino = $request->data_de_termino;
       $exposicao->responsavel = $request->responsavel;
       $exposicao->save();
-      return response()->json([$exposicao]);
+      return new ExposicaoResource($exposicao);
     }
 
 
     public function index(){
-      return Exposicao::all();
+      return ExposicaoResource::collection(Exposicao::all());
     }
 
 
